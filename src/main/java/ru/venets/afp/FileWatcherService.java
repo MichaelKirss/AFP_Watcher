@@ -28,7 +28,8 @@ public class FileWatcherService {
     private final Path sourceDir;
     private final Path targetDir;
     private final Path ftcDir;
-    private String regexFile = null;
+    private String regexFile;
+	private String regexFileToday;
    
     public FileWatcherService() throws Exception {
         Properties properties = new Properties();
@@ -130,8 +131,8 @@ public class FileWatcherService {
                                 DateTimeFormatter.ofPattern(
                                         "yyyyMMdd"));
     
-        regexFile = String.format(regexFile, today);
-        return fileName.matches(regexFile);
+        regexFileToday = String.format(regexFile, today);
+        return fileName.matches(regexFileToday);
         }
     private void waitUntilReady(Path file)throws InterruptedException {
             while (true) {
